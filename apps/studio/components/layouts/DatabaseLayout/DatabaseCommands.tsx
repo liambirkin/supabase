@@ -58,9 +58,9 @@ const useDatabaseGoto = () => {
       },
       {
         id: 'nav-database-replication',
-        name: 'Replication',
-        value: 'Database: Replication',
-        route: `/project/${ref || '_'}/database/replication`,
+        name: 'Publications',
+        value: 'Database: Publications',
+        route: `/project/${ref || '_'}/database/publications`,
         defaultHidden: true,
       },
       {
