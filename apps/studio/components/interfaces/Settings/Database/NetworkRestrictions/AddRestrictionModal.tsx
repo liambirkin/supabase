@@ -69,8 +69,12 @@ const AddRestrictionModal = ({
       return errors
     }
 
-    const isPrivate = checkIfPrivate(type, ipAddress)
-    if (isPrivate) errors.ipAddress = 'Private IP addresses are not supported'
+    try {
+      const isPrivate = checkIfPrivate(type, ipAddress)
+      if (isPrivate) errors.ipAddress = 'Private IP addresses are not supported'
+    } catch (error: any) {
+      errors.ipAddress = error.message
+    }
 
     return errors
   }
@@ -159,8 +163,8 @@ const AddRestrictionModal = ({
                     your database.
                   </p>
                   <InformationBox
-                    title="Note: Restrictions only apply to direct connections to your database and connection pooler"
-                    description="They do not currently apply to APIs offered over HTTPS, such as PostgREST, Storage, or Authentication. Supavisor will start enforcing network restrictions from January 24th 2024."
+                    title="Note: Restrictions only apply to direct connections to your database and Supavisor"
+                    description="They do not currently apply to APIs offered over HTTPS, such as PostgREST, Storage, or Authentication."
                     urlLabel="Learn more"
                     url="https://supabase.com/docs/guides/platform/network-restrictions#limitations"
                   />
